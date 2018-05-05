@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 /**
@@ -39,17 +41,18 @@ public class DishAdapter extends ArrayAdapter<Dish> {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(mResource, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-            viewHolder.imgPicture = (ImageView) convertView.findViewById(R.id.imgPicture);
-            viewHolder.imgHighRes = (ImageView) convertView.findViewById(R.id.imgHighRes);
-            viewHolder.linearLayout = (LinearLayout) convertView.findViewById(R.id.linearLayout);
+            viewHolder.tvTitle = convertView.findViewById(R.id.tvTitle);
+            viewHolder.imgPicture = convertView.findViewById(R.id.imgPicture);
+            viewHolder.imgHighRes = convertView.findViewById(R.id.imgHighRes);
+            viewHolder.linearLayout = convertView.findViewById(R.id.linearLayout);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         viewHolder.tvTitle.setText(lishDish.get(position).getName());
-        viewHolder.imgPicture.setImageResource(lishDish.get(position).getIcon());
+        Picasso.with(mContext).load(lishDish.get(position).getIcon()).fit().into(viewHolder.imgPicture);
+        //viewHolder.imgPicture.setImageResource(lishDish.get(position).getIcon());
 
         viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override

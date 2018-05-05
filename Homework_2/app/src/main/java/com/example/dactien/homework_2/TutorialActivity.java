@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 public class TutorialActivity extends AppCompatActivity {
 
     ImageView imgTutor;
@@ -16,5 +18,6 @@ public class TutorialActivity extends AppCompatActivity {
         imgTutor = (ImageView) findViewById(R.id.imgTutor);
         int imgRes = getIntent().getIntExtra("TUTORIAL", 0);
         imgTutor.setImageResource(imgRes);
+        //Picasso.with(this).load(imgRes).fit().into(imgTutor);
     }
 }
